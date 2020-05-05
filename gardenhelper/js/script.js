@@ -13,4 +13,4 @@ function testWebP(callback) {
 	document.querySelector('body').classList.add('webp');
 	}
 	});
-alert('hello gulp')
+//alert('hello gulp')
