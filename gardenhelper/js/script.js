@@ -1,3 +1,5 @@
+const webSiteUrl = "/";
+
 function testWebP(callback) {
 
 	var webP = new Image();
@@ -13,4 +15,52 @@ function testWebP(callback) {
 	document.querySelector('body').classList.add('webp');
 	}
 	});
-//alert('hello gulp')
+// === ibg функция преобразования img в фоновую картинку родителя
+
+function ibg() {
+	$.each($('.ibg'), function (index, val) {
+		if ($(this).find('img').length > 0) {
+			$(this).css('background-image', 'url("' + $(this).find('img').attr('src') + '")');
+		}
+	});
+}
+ibg();
+
+// === / ibg
+
+// === firstscreen full height
+// поиск блока mainblock - название зашито и делает его по размеру экрана
+$(window).resize(function (event) {
+	mainblock();
+});
+function mainblock() {
+	var h = $(window).outerHeight();
+	$('.mainblock').css('min-height', h);
+}
+mainblock();
+// === / firstscreen full height
+
+
+// === goto to # 
+$('.goto').click(function () {
+	var el = $(this).attr('href').replace('#', '');
+	var offset = 0;
+	$('body,html').animate({ scrollTop: $('.' + el).offset().top + offset }, 500, function () { });
+
+	if ($('.header-menu').hasClass('active')) {
+		$('.header-menu,.header-menu__icon').removeClass('active');
+		$('body').removeClass('lock');
+	}
+	return false;
+});
+// === / goto
+function isLogin() {
+	// аякс запрос на сервер узнать зарегистрирован ли пользователь
+	$.ajax({
+		url: webSiteUrl + 'islogin.php',
+		success: function (response) {
+			$(".header__container").append(response); // добавляем response еще одним child
+		}
+	}); /* ajax */
+}
+isLogin();

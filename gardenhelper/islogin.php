@@ -1,0 +1,1 @@
+<?php $siteUrl = $_SERVER['DOCUMENT_ROOT'];if (1) {	//include $siteUrl . '/top-menu.html';} else	echo "";?>
