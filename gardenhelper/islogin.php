@@ -1,1 +1,1 @@
-<?php $siteUrl = $_SERVER['DOCUMENT_ROOT'];if (1) {	//include $siteUrl . '/top-menu.html';} else	echo "";?>
+<?php $siteUrl = $_SERVER['DOCUMENT_ROOT'];if (isset($_COOKIE['user_id'])) {	include $siteUrl . '/top-menu.html';}?>
