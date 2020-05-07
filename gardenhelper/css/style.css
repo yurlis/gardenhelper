@@ -595,7 +595,7 @@ ol.counter li:before {
 .header__logo {
   -ms-flex-item-align: start;
       align-self: flex-start;
-  margin-top: 5px;
+  margin: 5px auto 0px;
 }
 
 .menu {

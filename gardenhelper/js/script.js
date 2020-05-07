@@ -1,3 +1,5 @@
+const webSiteUrl = "/";
+
 function testWebP(callback) {
 
 	var webP = new Image();
@@ -52,3 +54,13 @@ $('.goto').click(function () {
 	return false;
 });
 // === / goto
+function isLogin() {
+	// аякс запрос на сервер узнать зарегистрирован ли пользователь
+	$.ajax({
+		url: webSiteUrl + 'islogin.php',
+		success: function (response) {
+			$(".header__container").append(response); // добавляем response еще одним child
+		}
+	}); /* ajax */
+}
+isLogin();
