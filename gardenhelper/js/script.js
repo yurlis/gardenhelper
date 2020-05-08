@@ -1,4 +1,4 @@
-const webSiteUrl = "/";
+const webSiteUrl = "http://gardenhelper.local";
 
 function testWebP(callback) {
 
@@ -54,13 +54,142 @@ $('.goto').click(function () {
 	return false;
 });
 // === / goto
+
+// функция проверки на подключение пользователя
+// если пользователь прошел login - то выводить меню
 function isLogin() {
 	// аякс запрос на сервер узнать зарегистрирован ли пользователь
 	$.ajax({
-		url: webSiteUrl + 'islogin.php',
+		url: webSiteUrl + '/modules/call.php?cmd=islogin',
 		success: function (response) {
-			$(".header__container").append(response); // добавляем response еще одним child
+			data = JSON.parse(response);
+			if (data.status) {
+				// пользователь зарегистрирован
+				$(".mainblock__btn").hide();
+				$.ajax({
+					url: webSiteUrl + "/top-menu.html",
+					dataType: "html",
+					success: function (response) {
+						// добавляем response еще одним child
+						// меню включаем
+						$(".header__container").append(response);
+					}
+				});
+			}
 		}
 	}); /* ajax */
 }
 isLogin();
+
+
+// === обработка регистрации # 
+$('.registration-form__registration-button').click(function (event) {
+	event.preventDefault();
+	var form_data = new FormData();
+	var $form = $(this).parent(),
+		name = $form.find("input[name='name']").val(),
+		email = $form.find("input[name='email']").val(),
+		phone = $form.find("input[name='phone']").val(),
+		password = $form.find("input[name='password']").val(),
+		repassword = $form.find("input[name='repassword']").val();
+
+	form_data.append('name', name);
+	form_data.append('email', email);
+	form_data.append('phone', phone);
+	form_data.append('password', password);
+	form_data.append('repassword', repassword);
+	// url = $form.attr( "action" );
+
+	$.ajax({
+		url: webSiteUrl + '/modules/call.php?cmd=registration',
+		dataType: 'text',
+		cache: false,
+		contentType: false,
+		processData: false,
+		data: form_data,
+		type: 'POST',
+		success: function (response) {
+			data = JSON.parse(response);
+
+			// вывести информационное сообщение
+			$('.registration-form__info-block').hide(500, "linear");
+			$('.info-block__text').html(data.message);
+			$('.registration-form__info-block').show(500, "linear");
+			if (data.status) {
+				// через 1,5 секунды переходим на страницу логин
+				setTimeout(function () {
+					$('.registration-form__info-block').hide(500, "linear");
+					document.location.href = webSiteUrl + '/login.php';
+				}, 1500);
+			} else {
+				// если сообщение об ошибке - пока ничего не делаем
+			}
+		}
+	}); /* ajax */
+
+	return false;
+});
+// === / обработка регистрации
+
+
+// === обработка логин
+$('.login-form__login-button').click(function (event) {
+	event.preventDefault();
+	var form_data = new FormData();
+
+	var $form = $(this).parent(),
+		phone = $form.find("input[name='phone']").val(),
+		password = $form.find("input[name='password']").val();
+
+	form_data.append('phone', phone);
+	form_data.append('password', password);
+	// url = $form.attr( "action" );
+
+	$.ajax({
+		url: webSiteUrl + '/modules/call.php?cmd=login',
+		dataType: 'text',
+		cache: false,
+		contentType: false,
+		processData: false,
+		data: form_data,
+		type: 'POST',
+		success: function (response) {
+			data = JSON.parse(response);
+
+			// вывести информационное сообщение
+			$('.login-form__info-block').hide(500, "linear");
+			$('.info-block__text').html(data.message);
+			$('.login-form__info-block').show(500, "linear");
+			if (data.status) {
+				// через 1,5 секунды переходим на главную страницу
+				setTimeout(function () {
+					$('.registration-form__info-block').hide(500, "linear");
+					document.location.href = webSiteUrl;
+				}, 1500);
+			} else {
+				// если сообщение об ошибке - пока ничего не делаем
+			}
+		}
+	}); /* ajax */
+
+	return false;
+});
+// === / обработка логина
+
+
+// === получение списка зон
+function getZones() {
+	// аякс запрос на сервер узнать зарегистрирован ли пользователь
+	$.ajax({
+		url: webSiteUrl + '/modules/call.php?cmd=getzones',
+		success: function (response) {
+			data = JSON.parse(response);
+			if (data.status) {
+				// получил массив зон
+				// data.zone[0...]
+
+			}
+		}
+	}); /* ajax */
+}
+

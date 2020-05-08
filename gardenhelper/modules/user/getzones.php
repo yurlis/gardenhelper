@@ -1,0 +1,1 @@
+<?php $siteUrl = $_SERVER['DOCUMENT_ROOT'];$data = [	'status' => false,];// ... selectecho json_encode($data);?>

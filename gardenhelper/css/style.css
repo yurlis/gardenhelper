@@ -164,7 +164,7 @@ body.lock {
 .btn-main {
   font-size: 16px;
   margin: 0;
-  padding: 12px 20px;
+  padding: 17px 20px;
   outline: none;
   border-radius: 4px;
   cursor: pointer;
@@ -185,7 +185,7 @@ body.lock {
 .btn-second {
   font-size: 16px;
   margin: 0;
-  padding: 12px 20px;
+  padding: 17px 20px;
   outline: none;
   border-radius: 4px;
   cursor: pointer;
@@ -840,9 +840,9 @@ ol.counter li:before {
 
 .login-form__form-title,
 .registration-form__form-title {
-  font-size: 40px;
+  font-size: 30px;
   color: #777777;
-  margin: 20px 10% 0px;
+  margin: 30px 10% 0px;
 }
 
 .login-form__form-row,
@@ -852,7 +852,7 @@ ol.counter li:before {
 
 .login-form__login-button,
 .registration-form__registration-button {
-  margin: 20px 10% 0px;
+  margin: 22px 10% 0px;
   width: 80%;
 }
 
@@ -860,6 +860,7 @@ ol.counter li:before {
 .registration-form__registration-button .btn-main {
   width: 100%;
   color: #eeeeee;
+  padding: 13px 20px;
   font-size: 18px;
 }
 
@@ -879,6 +880,11 @@ ol.counter li:before {
   font-size: 18px;
   display: block;
   text-align: center;
+}
+
+.login-form__info-block,
+.registration-form__info-block {
+  display: none;
 }
 
 .login-form .link,
@@ -981,6 +987,25 @@ ol.counter li:before {
 
 .registration__registration-form {
   width: 500px;
+}
+
+.info-block__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.info-block__text-block {
+  text-align: center;
+  display: block;
+  padding: 20px 10px;
+}
+
+.info-block__text {
+  font-size: 20px;
 }
 
 .about {
