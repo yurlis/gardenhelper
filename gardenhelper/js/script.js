@@ -179,17 +179,47 @@ $('.login-form__login-button').click(function (event) {
 
 // === получение списка зон
 function getZones() {
-	// аякс запрос на сервер узнать зарегистрирован ли пользователь
+	// аякс запрос на сервер выести список климатических зон
 	$.ajax({
 		url: webSiteUrl + '/modules/call.php?cmd=getzones',
 		success: function (response) {
 			data = JSON.parse(response);
 			if (data.status) {
+				success: function (response) {
 				// получил массив зон
-				// data.zone[0...]
+				response = data.zone;
+				$(".header__container").append(response);
+				data = JSON.parse(response);
 
+				// form_data.append('name', name);
+				}
 			}
 		}
 	}); /* ajax */
 }
+getZones();
 
+function isLogin() {
+	// аякс запрос на сервер узнать зарегистрирован ли пользователь
+	$.ajax({
+		url: webSiteUrl + '/modules/call.php?cmd=islogin',
+		success: function (response) {
+			data = JSON.parse(response);
+			if (data.status) {
+				// пользователь зарегистрирован
+				//скрыть кнопку регистрации
+				$(".mainblock__btn").hide();
+				$.ajax({
+					url: webSiteUrl + "/top-menu.html",
+					dataType: "html",
+					success: function (response) {
+						// добавляем response еще одним child
+						// меню включаем
+						$(".header__container").append(response);
+					}
+				});
+			}
+		}
+	}); /* ajax */
+}
+isLogin();
