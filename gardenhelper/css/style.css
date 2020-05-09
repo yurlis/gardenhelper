@@ -169,10 +169,10 @@ body.lock {
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
-  border: none;
   background: -webkit-gradient(linear, left top, right top, from(#9be04b), to(#01a600));
   background: -o-linear-gradient(left, #9be04b, #01a600);
   background: linear-gradient(to right, #9be04b, #01a600);
+  border: none;
   color: #555555;
 }
 
@@ -832,6 +832,7 @@ ol.counter li:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size: 0;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -839,7 +840,8 @@ ol.counter li:before {
 }
 
 .login-form__form-title,
-.registration-form__form-title {
+.registration-form__form-title,
+.gh-form__title {
   font-size: 30px;
   color: #777777;
   margin: 30px 10% 0px;
@@ -870,12 +872,14 @@ ol.counter li:before {
 }
 
 .login-form__registration,
-.registration-form__login {
+.registration-form__login,
+.gh-form__confirm-btn {
   margin: 30px 0px 0px 0px;
 }
 
 .login-form__registration .btn-second,
-.registration-form__login .btn-second {
+.registration-form__login .btn-second,
+.gh-form__confirm-btn .btn-second {
   border-radius: 0px;
   font-size: 18px;
   display: block;
@@ -914,12 +918,14 @@ ol.counter li:before {
   width: 40%;
 }
 
-.form-row__input {
+.form-row__input,
+.form-inputblock__input {
   width: 60%;
   margin: 0;
 }
 
-.form-row__input input {
+.form-row__input input,
+.form-inputblock__input input {
   border: solid 1px;
   border-color: #555555;
   color: #000000;
@@ -931,58 +937,66 @@ ol.counter li:before {
   font-size: 18px;
 }
 
-.form-row__input input::-webkit-input-placeholder {
+.form-row__input input::-webkit-input-placeholder, .form-inputblock__input input::-webkit-input-placeholder {
   font-size: 15px;
   font-weight: normal;
   color: gray;
 }
 
-.form-row__input input::-moz-placeholder {
+.form-row__input input::-moz-placeholder, .form-inputblock__input input::-moz-placeholder {
   font-size: 15px;
   font-weight: normal;
   color: gray;
 }
 
-.form-row__input input:-ms-input-placeholder {
+.form-row__input input:-ms-input-placeholder, .form-inputblock__input input:-ms-input-placeholder {
   font-size: 15px;
   font-weight: normal;
   color: gray;
 }
 
-.form-row__input input::-ms-input-placeholder {
+.form-row__input input::-ms-input-placeholder, .form-inputblock__input input::-ms-input-placeholder {
   font-size: 15px;
   font-weight: normal;
   color: gray;
 }
 
-.form-row__input input::placeholder {
+.form-row__input input::placeholder,
+.form-inputblock__input input::placeholder {
   font-size: 15px;
   font-weight: normal;
   color: gray;
 }
 
-.form-row__input input:focus {
+.form-row__input input:focus,
+.form-inputblock__input input:focus {
   background: white;
 }
 
-.form-row__input input:focus::-webkit-input-placeholder {
+.form-row__input input:focus::-webkit-input-placeholder, .form-inputblock__input input:focus::-webkit-input-placeholder {
   color: black;
 }
 
-.form-row__input input:focus::-moz-placeholder {
+.form-row__input input:focus::-moz-placeholder, .form-inputblock__input input:focus::-moz-placeholder {
   color: black;
 }
 
-.form-row__input input:focus:-ms-input-placeholder {
+.form-row__input input:focus:-ms-input-placeholder, .form-inputblock__input input:focus:-ms-input-placeholder {
   color: black;
 }
 
-.form-row__input input:focus::-ms-input-placeholder {
+.form-row__input input:focus::-ms-input-placeholder, .form-inputblock__input input:focus::-ms-input-placeholder {
   color: black;
 }
 
-.form-row__input input:focus::placeholder {
+.form-row__input input:focus::placeholder,
+.form-inputblock__input input:focus::placeholder {
   color: black;
+}
+
+.form-row__input input:hover,
+.form-inputblock__input input:hover {
+  border-color: #01a600;
 }
 
 .registration__registration-form {
@@ -1080,6 +1094,256 @@ ol.counter li:before {
   font-size: 14px;
   font-weight: 300;
   line-height: 26px;
+}
+
+.registration-plant {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.registration-plant .container {
+  width: 80%;
+  max-width: 982px;
+  margin: 0 auto;
+}
+
+.registration-plant__form-registration {
+  position: relative;
+  z-index: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  background-color: #eeeeee;
+}
+
+.gh-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  text-align: left;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.gh-form__title {
+  padding: 0px 20px 0px 20px;
+  margin: 20px 0px 20px;
+}
+
+.gh-form__confirm-btn .btn-second {
+  font-size: 20px;
+  background: -webkit-gradient(linear, left top, right top, from(#9be04b), to(#01a600));
+  background: -o-linear-gradient(left, #9be04b, #01a600);
+  background: linear-gradient(to right, #9be04b, #01a600);
+  color: #eeeeee;
+}
+
+.gh-form__confirm-btn .btn-second:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#01a600), to(#9be04b));
+  background: -o-linear-gradient(left, #01a600, #9be04b);
+  background: linear-gradient(to right, #01a600, #9be04b);
+}
+
+.form-inputblock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-inputblock__title,
+.gh-form__planted,
+.gh-form__follow,
+.comment-block__title,
+.form-selectblock__title {
+  display: block;
+  padding: 0px 20px 0px 20px;
+  margin: 10px 0px;
+  font-size: 25px;
+}
+
+.form-inputblock__select-btn {
+  padding-right: 20px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.form-inputblock__select-btn .btn-main {
+  display: block;
+  color: #eeeeee;
+  padding: 10px 40px;
+  font-size: 18px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.form-inputblock__input {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  width: 100%;
+  padding: 0px 20px 0px 20px;
+  margin-bottom: 10px;
+}
+
+.comment-block {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.comment-block__comment {
+  padding: 0px 20px 0px 20px;
+}
+
+.comment-block__comment textarea {
+  resize: none;
+  width: 100%;
+  height: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: auto;
+}
+
+.form-selectblock__select {
+  position: relative;
+  padding: 0px 20px;
+  margin: 10px 0px;
+  /* Убираем стандартные стрелочки в IE */
+}
+
+.form-selectblock__select:before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 30px;
+  background-color: #555555;
+  pointer-events: none;
+  position: absolute;
+  top: 1px;
+  right: 48px;
+  z-index: 1;
+}
+
+.form-selectblock__select:after {
+  content: "";
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #333 transparent transparent transparent;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  z-index: 1;
+  margin-top: -2px;
+}
+
+.form-selectblock__select select {
+  width: 100%;
+  height: 100%;
+  padding: 7px 7px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #555555;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-size: 14px;
+  color: #000;
+}
+
+.form-selectblock__select select::-ms-expand {
+  display: none;
+}
+
+.form-selectblock__select select:focus {
+  outline: 0;
+  border-color: #01a600;
+}
+
+.form-selectblock__select select:hover {
+  cursor: pointer;
+  border-color: #01a600;
+}
+
+.check {
+  margin: 0 3px 0 0;
+  width: 10px;
+  height: 10px;
+}
+
+.check + label {
+  cursor: pointer;
+}
+
+.check:not(checked) {
+  position: absolute;
+  opacity: 0;
+  /*   visibility: hidden; */
+}
+
+.check:not(checked) + label {
+  position: relative;
+  padding: 0 0 0 60px;
+}
+
+.check:not(checked) + label:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  background: #cdd1da;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+.check:not(checked) + label:after {
+  content: "";
+  position: absolute;
+  top: 5;
+  left: 7px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.check:checked + label:before {
+  background: #01a600;
+}
+
+.check:checked + label:after {
+  left: 25px;
 }
 
 @media (min-width: 991.98px) {

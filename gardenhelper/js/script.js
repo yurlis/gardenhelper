@@ -55,6 +55,40 @@ $('.goto').click(function () {
 });
 // === / goto
 
+// === функциия для добавления каких-либо функций в дополнительную обработку события загрузки 
+function windowLoad(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function () {
+			if (oldonload) {
+				oldonload();
+			}
+			func();
+		}
+	}
+}
+
+// === функция для добавления каких-либо функций в дополнительную обработку события document ready
+function documentReady(func) {
+	var oldonload = document.ready;
+	if (typeof document.ready != 'function') {
+		document.ready = func;
+	} else {
+		document.ready = function () {
+			if (oldonload) {
+				oldonload();
+			}
+			func();
+		}
+	}
+}
+// === /
+
+
+
+
 // функция проверки на подключение пользователя
 // если пользователь прошел login - то выводить меню
 function isLogin() {
@@ -75,6 +109,9 @@ function isLogin() {
 						$(".header__container").append(response);
 					}
 				});
+			} else {
+				// если пользователь уже не залогинен, то перейти на главную, если не на главной
+				// document.location.href = webSiteUrl;
 			}
 		}
 	}); /* ajax */
@@ -178,48 +215,66 @@ $('.login-form__login-button').click(function (event) {
 
 
 // === получение списка зон
-function getZones() {
-	// аякс запрос на сервер выести список климатических зон
-	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=getzones',
-		success: function (response) {
-			data = JSON.parse(response);
-			if (data.status) {
-				success: function (response) {
-				// получил массив зон
-				response = data.zone;
-				$(".header__container").append(response);
+$(window).ready(function () {
+	// проверка на существование элемента, т.е. если страница с формой, то получаем данные
+	if ($('.form-selectblock__select').length) {
+		// аякс запрос на сервер узнать зарегистрирован ли пользователь
+		$.ajax({
+			url: webSiteUrl + '/modules/call.php?cmd=getzones',
+			success: function (response) {
 				data = JSON.parse(response);
-
-				// form_data.append('name', name);
+				if (data.status) {
+					// получил массив зон
+					// data.zone[0...]
+					var i = 0;
+					while (i < data.zones.length) {
+						$('.form-selectblock__select select').append('<option value="' + data.zones[i].id + '">' + data.zones[i].name + '</option>');
+						i++;
+					}
+					$('.form-selectblock__select select option[value="' + data.user_zone_id + '"]').attr("selected", "selected");
 				}
 			}
-		}
-	}); /* ajax */
-}
-getZones();
+		}); /* ajax */
+	}
+});
+// === / получение списка зон
 
-function isLogin() {
-	// аякс запрос на сервер узнать зарегистрирован ли пользователь
+// === получение списка растений
+$('.__plant').click(function (event) {
+	event.preventDefault();
+
 	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=islogin',
+		url: webSiteUrl + '/modules/call.php?cmd=getplants',
 		success: function (response) {
-			data = JSON.parse(response);
-			if (data.status) {
-				// пользователь зарегистрирован
-				//скрыть кнопку регистрации
-				$(".mainblock__btn").hide();
-				$.ajax({
-					url: webSiteUrl + "/top-menu.html",
-					dataType: "html",
-					success: function (response) {
-						// добавляем response еще одним child
-						// меню включаем
-						$(".header__container").append(response);
-					}
-				});
-			}
+			// data = JSON.parse(response);
+			$('.login-form__info-block').hide(500, "linear");
+			$('.info-block__text').html(response);
+			$('.login-form__info-block').show(500, "linear");
+			var offset = 0;
+			$('body,html').animate({ scrollTop: $('.gh-form__confirm-btn').offset().top + offset }, 500, function () { });
 		}
 	}); /* ajax */
-}
-isLogin();
+
+	return false;
+});
+// === / получение списка растений
+
+// === получение списка продавцов
+$('.__seller').click(function (event) {
+	event.preventDefault();
+
+	$.ajax({
+		url: webSiteUrl + '/modules/call.php?cmd=getsellers',
+		success: function (response) {
+			// data = JSON.parse(response);
+			$('.login-form__info-block').hide(500, "linear");
+			$('.info-block__text').html(response);
+			$('.login-form__info-block').show(500, "linear");
+			var offset = 0;
+			$('body,html').animate({ scrollTop: $('.gh-form__confirm-btn').offset().top + offset }, 500, function () { });
+		}
+	}); /* ajax */
+
+	return false;
+});
+// === / получение списка продавцов
