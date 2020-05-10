@@ -195,7 +195,7 @@ $('.login-form__login-button').click(function (event) {
 
 			// вывести информационное сообщение
 			$('.login-form__info-block').hide(500, "linear");
-			$('.info-block__text').html(data.message);
+			$('.info-block__content').html(data.message);
 			$('.login-form__info-block').show(500, "linear");
 			if (data.status) {
 				// через 1,5 секунды переходим на главную страницу
@@ -248,7 +248,7 @@ $('.__plant').click(function (event) {
 		success: function (response) {
 			// data = JSON.parse(response);
 			$('.login-form__info-block').hide(500, "linear");
-			$('.info-block__text').html(response);
+			$('.info-block__content').html(response);
 			$('.login-form__info-block').show(500, "linear");
 			var offset = 0;
 			$('body,html').animate({ scrollTop: $('.gh-form__confirm-btn').offset().top + offset }, 500, function () { });
@@ -268,7 +268,7 @@ $('.__seller').click(function (event) {
 		success: function (response) {
 			// data = JSON.parse(response);
 			$('.login-form__info-block').hide(500, "linear");
-			$('.info-block__text').html(response);
+			$('.info-block__content').html(response);
 			$('.login-form__info-block').show(500, "linear");
 			var offset = 0;
 			$('body,html').animate({ scrollTop: $('.gh-form__confirm-btn').offset().top + offset }, 500, function () { });
@@ -278,3 +278,71 @@ $('.__seller').click(function (event) {
 	return false;
 });
 // === / получение списка продавцов
+
+
+// === обработка нажатия на кнопку select (id - код в БД, plant - растения/seller - продавец)
+function setChoice(obj, id, type, name) {
+	// закрываем информационный блок
+	$('.login-form__info-block').hide(500, "linear");
+	$("input[name='" + type + "']").val(name);
+	// $("input[name='plant']").val(name);
+	// сохраняем id на странице формы для отправки 
+	$("input[name='" + type + "id']").val(id);
+	// Нам необходимо помнить, что функция обработки клика должна возвратить «false», чтобы браузер не совершил перехода на другую страницу.
+	return false;
+}
+// === /
+
+// === сохранение растения
+$('.gh-form__confirm-btn').click(function (event) {
+	event.preventDefault(); // ? по идее работает и так
+	var form_data = new FormData();
+
+	var $form = $(this).parent(),
+		plantid = $form.find("input[name='plantid']").val(),
+		zone = $form.find("select").val(),
+		sellerid = $form.find("input[name='sellerid']").val(),
+		comment = $form.find("textarea[name='comment']").val(),
+		planted = $form.find("input[name='check1']").val(),
+		date = $form.find("input[name='date']").val(),
+		follow = $form.find("input[name='check2']").val();
+
+	form_data.append('plantid', plantid);
+	form_data.append('zone', zone);
+	form_data.append('sellerid', sellerid);
+	form_data.append('comment', comment);
+	form_data.append('planted', planted);
+	form_data.append('date', date);
+	form_data.append('follow', follow);
+	// url = $form.attr( "action" );
+
+	$.ajax({
+		url: webSiteUrl + '/modules/call.php?cmd=addplant',
+		dataType: 'text',
+		cache: false,
+		contentType: false,
+		processData: false,
+		data: form_data,
+		type: 'POST',
+		success: function (response) {
+			data = JSON.parse(response);
+
+			// вывести информационное сообщение
+			$('.login-form__info-block').hide(500, "linear");
+			$('.info-block__content').html(data.message);
+			$('.login-form__info-block').show(500, "linear");
+			if (data.status) {
+				// через 1,5 секунды переходим на главную страницу
+				setTimeout(function () {
+					$('.registration-form__info-block').hide(500, "linear");
+					document.location.href = webSiteUrl;
+				}, 2000);
+			} else {
+				// если сообщение об ошибке - пока ничего не делаем
+			}
+		}
+	}); /* ajax */
+
+	return false;
+});
+// === / обработка логина

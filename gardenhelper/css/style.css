@@ -1007,18 +1007,29 @@ ol.counter li:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size: 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
 }
 
-.info-block__text-block {
+.info-block__content-block {
   text-align: center;
   display: block;
   padding: 20px 10px;
 }
 
-.info-block__text {
+.info-block__content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   font-size: 20px;
 }
 
@@ -1346,6 +1357,55 @@ ol.counter li:before {
   left: 25px;
 }
 
+.plants-item,
+.sellers-item {
+  border: 1px solid #555555;
+  width: calc(33.3% - 10px);
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px 5px;
+}
+
+.plants-item__picture,
+.sellers-item__picture {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.plants-item__picture img,
+.sellers-item__picture img {
+  width: 80%;
+  height: auto;
+  padding: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.plants-item__name,
+.sellers-item__name {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.plants-item__type,
+.sellers-item__address {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.plants-item__btn,
+.sellers-item__btn {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.plants-item__btn a,
+.sellers-item__btn a {
+  width: 100%;
+  display: inline-block;
+}
+
 @media (min-width: 991.98px) {
   .menu__link:hover {
     text-decoration: underline;
@@ -1394,10 +1454,31 @@ ol.counter li:before {
   .about__title {
     margin: 0px 0px 15px 0px;
   }
+
+  .registration-plant .container {
+    width: 100%;
+  }
+
+  .plants-item,
+  .sellers-item {
+    width: calc(50% - 10px);
+  }
 }
 
 @media screen and (max-width: 767.98px), screen and (max-height: 600px) {
   .mainblock__text {
     padding: 20px 0;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .plants-item,
+  .sellers-item {
+    width: 100%;
+  }
+
+  .plants-item,
+  .sellers-item {
+    margin: 5px 0px;
   }
 }
