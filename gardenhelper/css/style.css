@@ -1003,6 +1003,21 @@ ol.counter li:before {
   width: 500px;
 }
 
+.verification__container {
+  margin-top: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.verification__login-form {
+  background-color: #eeeeee;
+  width: 450px;
+}
+
 .info-block__container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1170,6 +1185,34 @@ ol.counter li:before {
   background: linear-gradient(to right, #01a600, #9be04b);
 }
 
+.gh-form__planted {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  padding: 0px 20px 0px 20px;
+  margin: 10px 0px 0px 10px;
+  font-size: 25px;
+}
+
+.gh-form__follow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  padding: 0px 20px 0px 20px;
+  margin: 10px 0px 0px 10px;
+  font-size: 25px;
+}
+
+.gh-form__date {
+  margin-left: 40px;
+}
+
+.gh-form__date input {
+  font-size: 20px;
+}
+
 .form-inputblock {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1183,8 +1226,6 @@ ol.counter li:before {
 }
 
 .form-inputblock__title,
-.gh-form__planted,
-.gh-form__follow,
 .comment-block__title,
 .form-selectblock__title {
   display: block;
@@ -1321,7 +1362,7 @@ ol.counter li:before {
 .check:not(checked) + label:before {
   content: "";
   position: absolute;
-  top: 5px;
+  top: 3px;
   left: 5px;
   width: 40px;
   height: 20px;
@@ -1335,7 +1376,7 @@ ol.counter li:before {
 .check:not(checked) + label:after {
   content: "";
   position: absolute;
-  top: 5;
+  top: 2px;
   left: 7px;
   width: 20px;
   height: 20px;

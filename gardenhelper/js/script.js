@@ -111,7 +111,11 @@ function isLogin() {
 				});
 			} else {
 				// если пользователь уже не залогинен, то перейти на главную, если не на главной
-				// document.location.href = webSiteUrl;
+				if (document.location.href != webSiteUrl + '/' && document.location.href != "http://gardenhelper.local/login.php" &&
+					document.location.href != "http://gardenhelper.local/registration.php" &&
+					document.location.href != "http://gardenhelper.local/verification.php") {
+					document.location.href = webSiteUrl;
+				}
 			}
 		}
 	}); /* ajax */
@@ -150,7 +154,7 @@ $('.registration-form__registration-button').click(function (event) {
 
 			// вывести информационное сообщение
 			$('.registration-form__info-block').hide(500, "linear");
-			$('.info-block__text').html(data.message);
+			$('.info-block__content').html(data.message);
 			$('.registration-form__info-block').show(500, "linear");
 			if (data.status) {
 				// через 1,5 секунды переходим на страницу логин
@@ -198,11 +202,11 @@ $('.login-form__login-button').click(function (event) {
 			$('.info-block__content').html(data.message);
 			$('.login-form__info-block').show(500, "linear");
 			if (data.status) {
-				// через 1,5 секунды переходим на главную страницу
+				// через 2 секунды переходим на главную страницу
 				setTimeout(function () {
 					$('.registration-form__info-block').hide(500, "linear");
 					document.location.href = webSiteUrl;
-				}, 1500);
+				}, 2000);
 			} else {
 				// если сообщение об ошибке - пока ничего не делаем
 			}
@@ -325,14 +329,19 @@ $('.gh-form__confirm-btn').click(function (event) {
 		data: form_data,
 		type: 'POST',
 		success: function (response) {
+			if (response == "") {
+				// ситуация отлогинивания пользователя или взлом
+				document.location.href = webSiteUrl;
+			}
 			data = JSON.parse(response);
 
 			// вывести информационное сообщение
 			$('.login-form__info-block').hide(500, "linear");
 			$('.info-block__content').html(data.message);
 			$('.login-form__info-block').show(500, "linear");
+
 			if (data.status) {
-				// через 1,5 секунды переходим на главную страницу
+				// через 2 секунды переходим на главную страницу
 				setTimeout(function () {
 					$('.registration-form__info-block').hide(500, "linear");
 					document.location.href = webSiteUrl;
@@ -346,3 +355,10 @@ $('.gh-form__confirm-btn').click(function (event) {
 	return false;
 });
 // === / обработка логина
+
+// === обработка checkbox
+$("input[type='checkbox']").click(function (obj) {
+	var currentVal = $(this).val();
+	$(this).val((currentVal == "off") ? "on" : "off");
+});
+// === / обработка checkbox
