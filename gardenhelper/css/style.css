@@ -1048,6 +1048,37 @@ ol.counter li:before {
   font-size: 20px;
 }
 
+.info-block__pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.info-block .pagination__nav-item {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 7px;
+  border: 1px solid #555555;
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+.info-block .pagination ._active {
+  font-weight: 700;
+}
+
+.info-block .pagination a {
+  cursor: pointer;
+}
+
+.info-block .pagination a:hover {
+  text-decoration: underline;
+}
+
 .about {
   padding: 60px 0px 60px 0px;
 }
@@ -1191,7 +1222,7 @@ ol.counter li:before {
   display: flex;
   font-size: 0;
   padding: 0px 20px 0px 20px;
-  margin: 10px 0px 0px 10px;
+  margin-top: 10px;
   font-size: 25px;
 }
 
@@ -1201,7 +1232,7 @@ ol.counter li:before {
   display: flex;
   font-size: 0;
   padding: 0px 20px 0px 20px;
-  margin: 10px 0px 0px 10px;
+  margin-top: 10px;
   font-size: 25px;
 }
 
@@ -1400,6 +1431,17 @@ ol.counter li:before {
 
 .plants-item,
 .sellers-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border: 1px solid #555555;
   width: calc(33.3% - 10px);
   background-color: #fff;
@@ -1433,12 +1475,6 @@ ol.counter li:before {
 .sellers-item__address {
   font-size: 15px;
   margin-bottom: 10px;
-}
-
-.plants-item__btn,
-.sellers-item__btn {
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
 }
 
 .plants-item__btn a,
@@ -1513,6 +1549,35 @@ ol.counter li:before {
 }
 
 @media (max-width: 479.98px) {
+  .info-block .pagination__nav-item {
+    font-size: 12px;
+    margin-right: 3px;
+  }
+
+  .gh-form__planted {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+
+  .gh-form__follow {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .gh-form__date {
+    margin: 10px 0px;
+    text-align: center;
+  }
+
+  .gh-form__date input {
+    margin-top: 10px;
+  }
+
+  .check label {
+    margin-top: 10px;
+  }
+
   .plants-item,
   .sellers-item {
     width: 100%;

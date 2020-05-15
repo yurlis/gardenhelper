@@ -90,6 +90,9 @@ function documentReady(func) {
 
 
 // функция проверки на подключение пользователя
+
+// headers: {  'Access-Control-Allow-Origin': 'http://The web site allowed to access' },
+
 // если пользователь прошел login - то выводить меню
 function isLogin() {
 	// аякс запрос на сервер узнать зарегистрирован ли пользователь
@@ -244,23 +247,33 @@ $(window).ready(function () {
 // === / получение списка зон
 
 // === получение списка растений
+limit = 3; // изображений на странице
 $('.__plant').click(function (event) {
 	event.preventDefault();
-
-	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=getplants',
-		success: function (response) {
-			// data = JSON.parse(response);
-			$('.login-form__info-block').hide(500, "linear");
-			$('.info-block__content').html(response);
-			$('.login-form__info-block').show(500, "linear");
-			var offset = 0;
-			$('body,html').animate({ scrollTop: $('.gh-form__confirm-btn').offset().top + offset }, 500, function () { });
-		}
-	}); /* ajax */
-
+	paginationFunc(1);
+	// getListPlants(1);
 	return false;
 });
+
+function getListPlants(page) {
+
+	$.ajax({
+		url: webSiteUrl + '/modules/call.php?cmd=getplants&p=' + page + '&limit=' + limit,
+		success: function (response) {
+			// data = JSON.parse(response);
+			// if ( $('.login-form__info-block').html != "") {
+			// 	$('.login-form__info-block').hide(500, "linear");
+			// 	$('.info-block__content').html(response);
+			// 	$('.login-form__info-block').show(500, "linear");
+			// } else {
+			$('.info-block__content').html(response);
+			$('.login-form__info-block').show(500, "linear");
+			// }
+			var offset = 50;
+			$('body,html').animate({ scrollTop: $('.info-block__container').offset().top + offset }, 500, function () { });
+		}
+	}); /* ajax */
+}
 // === / получение списка растений
 
 // === получение списка продавцов
@@ -287,6 +300,7 @@ $('.__seller').click(function (event) {
 // === обработка нажатия на кнопку select (id - код в БД, plant - растения/seller - продавец)
 function setChoice(obj, id, type, name) {
 	// закрываем информационный блок
+	$('.info-block__pagination').empty(); // удаляется пагинация
 	$('.login-form__info-block').hide(500, "linear");
 	$("input[name='" + type + "']").val(name);
 	// $("input[name='plant']").val(name);
@@ -362,3 +376,94 @@ $("input[type='checkbox']").click(function (obj) {
 	$(this).val((currentVal == "off") ? "on" : "off");
 });
 // === / обработка checkbox
+
+// === работа с пагинацией 
+var numRows = 10; // количество записей всего
+pagination = ".info-block__pagination";
+
+function paginationFunc(currentPage) {
+	var totalPages; // для подсчета кол-ва страниц всего
+	totalPages = Math.ceil(numRows / limit);
+
+	$(pagination).empty();
+	if (currentPage > 1) {
+		htmlCode = '<div class="pagination__nav-item"><a class="nav-link" onclick="paginationFunc(1);"> |< </a></div>';
+		$(pagination).append(htmlCode);
+		htmlCode = '<div class="pagination__nav-item"><a class="nav-link" onclick="paginationFunc(' + (+currentPage - +1) + ');"> <<< </a></div>';
+		$(pagination).append(htmlCode);
+	}
+	//  если страниц меньше чем limit то делаем просто вывод 5 и меньше без точек 
+
+	if (numRows > limit * 5) {
+		// т.е. єлементов 31 и больше - хватает на limit страниц вывода 
+		if (totalPages - currentPage < 5) {
+			// текущая страница уже близко к последней, ... выводить не надо
+			countPage = totalPages - 5;
+			while (countPage <= totalPages) {
+				htmlCode = '<div class="pagination__nav-item"><span class="align-middle"><a class="nav-link ' + ((currentPage == countPage) ? '_active' : '') + '" onclick="paginationFunc(' + countPage + ');">' + countPage + '</a></span></div>';
+				$(pagination).append(htmlCode);
+				countPage++;
+			}
+		} else {
+			// вариант когда нужны "..."
+			if (currentPage > 1) {
+				// обычный вариант
+				countPage = currentPage - 1;
+				countPageI = 1;
+				while (countPageI <= limit) {
+					if (countPageI <= 3) {
+						htmlCode = '<div class="pagination__nav-item"><span class="align-middle"><a class="nav-link ' + ((currentPage == countPage) ? '_active' : '') + '" onclick="paginationFunc(' + countPage + ');">' + countPage + '</a></span></div>';
+						$(pagination).append(htmlCode);
+					}
+					if (countPageI == 4) {
+						htmlCode = '<div class="pagination__nav-item"><span class="align-middle"><a class="nav-link">...</a></span></div>';
+						$(pagination).append(htmlCode);
+					}
+					if (countPageI == limit) {
+						// последняя страница
+						htmlCode = '<div class="pagination__nav-item"><span class="align-middle"><a class="nav-link" onclick="paginationFunc(' + totalPages + ');">' + totalPages + '</a></span></div>';
+						$(pagination).append(htmlCode);
+					}
+					countPage++;
+					countPageI++;
+				}
+			} else {
+				// первая страница
+				countPage = 1;
+				while (countPage <= limit) {
+					if (countPage <= 3) {
+						htmlCode = '<div class="pagination__nav-item"><span class="align-middle"><a class="nav-link ' + ((currentPage == countPage) ? '_active' : '') + '" onclick="paginationFunc(' + countPage + ');">' + countPage + '</a></span></div>';
+						$(pagination).append(htmlCode);
+					}
+					if (countPage == 4) {
+						htmlCode = '<div class="pagination__nav-item"><span class="align-middle"><a class="nav-link">...</a></span></div>';
+						$(pagination).append(htmlCode);
+					}
+					if (countPage == limit) {
+						// последняя страница
+						htmlCode = '<div class="pagination__nav-item"><span class="align-middle"><a class="nav-link" onclick="paginationFunc(' + countPage + ');">' + countPage + '</a></span></div>';
+						$(pagination).append(htmlCode);
+					}
+					countPage++;
+				}
+			}
+		}
+	} else {
+		// страниц меньше чем limit и мы делаем просто 1, 2, 3, ....
+		countPage = 1;
+		while (countPage <= Math.ceil(numRows / limit)) {
+			htmlCode = '<div class="pagination__nav-item"><span class="align-middle"><a class="nav-link ' + ((currentPage == countPage) ? '_active' : '') + '" onclick="paginationFunc(' + countPage + ');">' + countPage + '</a></span></div>';
+			$(pagination).append(htmlCode);
+			countPage++;
+		}
+	}
+
+	if (currentPage < totalPages) {
+		htmlCode = '<div class="pagination__nav-item"><a class="nav-link" onclick="paginationFunc(' + (+currentPage + +1) + ');"> >>> </a></div>';
+		$(pagination).append(htmlCode);
+		htmlCode = '<div class="pagination__nav-item"><a class="nav-link" onclick="paginationFunc(' + totalPages + ');"> >| </a></div>';
+		$(pagination).append(htmlCode);
+	}
+
+	getListPlants(currentPage);
+}
