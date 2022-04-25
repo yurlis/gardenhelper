@@ -1,4 +1,23 @@
-const webSiteUrl = "http://gardenhelper.local";
+
+function fullPath(path) {
+	path = path.substring(0, path.lastIndexOf("/"));
+	return (path.match(/[^.]+(\.[^?#]+)?/) || [])[0];
+}
+
+// // let webSiteUrl = "http://" + document.domain;
+let webSiteUrl = fullPath(location.href) + "/";
+
+console.log(webSiteUrl);
+
+// str1 = window.location.pathname // /account/search
+// // For reference:
+// str2 = window.location.host     // www.somedomain.com (includes port if there is one)
+// str3 = window.location.hostname // www.somedomain.com
+// str4 = window.location.hash     // #top
+// str5 = window.location.href     // http://www.somedomain.com/account/search?filter=a#top
+// str6 = window.location.port     // (empty string)
+// str7 = window.location.protocol // http:
+// str8 = window.location.search   // ?filter=a  
 
 function testWebP(callback) {
 
@@ -97,14 +116,14 @@ function documentReady(func) {
 function isLogin() {
 	// аякс запрос на сервер узнать зарегистрирован ли пользователь
 	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=islogin',
+		url: webSiteUrl + 'modules/call.php?cmd=islogin',
 		success: function (response) {
 			data = JSON.parse(response);
 			if (data.status) {
 				// пользователь зарегистрирован
 				$(".mainblock__btn").hide();
 				$.ajax({
-					url: webSiteUrl + "/top-menu.html",
+					url: webSiteUrl + "top-menu.html",
 					dataType: "html",
 					success: function (response) {
 						// добавляем response еще одним child
@@ -114,9 +133,9 @@ function isLogin() {
 				});
 			} else {
 				// если пользователь уже не залогинен, то перейти на главную, если не на главной
-				if (document.location.href != webSiteUrl + '/' && document.location.href != "http://gardenhelper.local/login.php" &&
-					document.location.href != "http://gardenhelper.local/registration.php" &&
-					document.location.href != "http://gardenhelper.local/verification.php") {
+				if (document.location.href != webSiteUrl + '' && document.location.href != webSiteUrl + 'login.php' &&
+					document.location.href != webSiteUrl + 'registration.php' &&
+					document.location.href != webSiteUrl + 'verification.php') {
 					document.location.href = webSiteUrl;
 				}
 			}
@@ -145,7 +164,7 @@ $('.registration-form__registration-button').click(function (event) {
 	// url = $form.attr( "action" );
 
 	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=registration',
+		url: webSiteUrl + 'modules/call.php?cmd=registration',
 		dataType: 'text',
 		cache: false,
 		contentType: false,
@@ -163,7 +182,7 @@ $('.registration-form__registration-button').click(function (event) {
 				// через 1,5 секунды переходим на страницу логин
 				setTimeout(function () {
 					$('.registration-form__info-block').hide(500, "linear");
-					document.location.href = webSiteUrl + '/login.php';
+					document.location.href = webSiteUrl + 'login.php';
 				}, 1500);
 			} else {
 				// если сообщение об ошибке - пока ничего не делаем
@@ -190,7 +209,7 @@ $('.login-form__login-button').click(function (event) {
 	// url = $form.attr( "action" );
 
 	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=login',
+		url: webSiteUrl + 'modules/call.php?cmd=login',
 		dataType: 'text',
 		cache: false,
 		contentType: false,
@@ -227,7 +246,7 @@ $(window).ready(function () {
 	if ($('.form-selectblock__select').length) {
 		// аякс запрос на сервер узнать зарегистрирован ли пользователь
 		$.ajax({
-			url: webSiteUrl + '/modules/call.php?cmd=getzones',
+			url: webSiteUrl + 'modules/call.php?cmd=getzones',
 			success: function (response) {
 				data = JSON.parse(response);
 				if (data.status) {
@@ -258,7 +277,7 @@ $('.__plant').click(function (event) {
 function getListPlants(page) {
 
 	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=getplants&p=' + page + '&limit=' + limit,
+		url: webSiteUrl + 'modules/call.php?cmd=getplants&p=' + page + '&limit=' + limit,
 		success: function (response) {
 			// data = JSON.parse(response);
 			// if ( $('.login-form__info-block').html != "") {
@@ -281,7 +300,7 @@ $('.__seller').click(function (event) {
 	event.preventDefault();
 
 	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=getsellers',
+		url: webSiteUrl + 'modules/call.php?cmd=getsellers',
 		success: function (response) {
 			// data = JSON.parse(response);
 			$('.login-form__info-block').hide(500, "linear");
@@ -335,7 +354,7 @@ $('.gh-form__confirm-btn').click(function (event) {
 	// url = $form.attr( "action" );
 
 	$.ajax({
-		url: webSiteUrl + '/modules/call.php?cmd=addplant',
+		url: webSiteUrl + 'modules/call.php?cmd=addplant',
 		dataType: 'text',
 		cache: false,
 		contentType: false,
