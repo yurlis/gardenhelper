@@ -1,1 +1,0 @@
-<?php	$siteUrl = $_SERVER['DOCUMENT_ROOT'];	setcookie("user_id", "", 0, "/");	header("Location: /");?>
