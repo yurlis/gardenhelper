@@ -6,7 +6,7 @@
 
 ## Description
 
-<p align="center"><img  src="./readme_assets/screen1.png" width="70%"></p>
+<p align="center"><img  src="./readme_assets/sc-1.jpg" width="100%"></p>
 
 
 The idea of ​​the project was born from life. How to save money when buying? It is often necessary to compare the prices of goods or products in different stores. Sellers and manufacturers deliberately do so to confuse the buyer and sell him the product at an inflated price. Make different volumes and more. The project aims to store information about the price and volume or weight of the product in different stores. This allows you to check where a kilogram, piece, cubic meter or other unit of measurement is cheaper.
@@ -21,7 +21,7 @@ This project is part of a training of skills in the course of study. In it I pas
 <p align="center"><img  src="./readme_assets/db.png" width="100%"></p>
 
 ### The project is based on Ajax queries and data processing in JSON format
-<p align="center"><img  src="./readme_assets/sc-1.jpg" width="100%"></p>
+
 <p align="center"><img  src="./readme_assets/sc-2.jpg" width="100%"></p>
 
 ## This project used:
