@@ -1,0 +1,261 @@
+.registration-plant {
+	flex: 1 1 auto;
+	@include flexbox();
+	flex-direction: column;
+	justify-content: center;
+
+	.container {
+		width: 80%;
+		@media (max-width: $md3 + px) {
+			width: 100%;
+		}
+		max-width: $md1 + px;
+		margin: 0 auto;
+	}
+
+	&__form-registration {
+		position: relative;
+		z-index: 1;
+		flex: 1 1 auto;
+		background-color: $white;
+	}
+}
+
+.gh-form {
+	@include flexbox();
+	text-align: left;
+	flex-direction: column;
+	&__title {
+		@extend .login-form__form-title;
+		padding: 0px 20px 0px 20px;
+		margin: 20px 0px 20px;
+	}
+
+	&__plant-name {
+	}
+
+	&__plant-seller {
+	}
+
+	&__confirm-btn {
+		@extend .login-form__registration;
+		.btn-second {
+			font-size: 20px;
+			@include pattern-button-gradient;
+			color: $white;
+		}
+	}
+
+	&__comment {
+	}
+
+	&__planted {
+		@include flexbox();
+		padding: 0px 20px 0px 20px;
+		margin-top: 10px;
+		font-size: 25px;
+		@media (max-width: $md4 + px) {
+			flex-wrap: wrap;
+		}
+	}
+
+	&__follow {
+		@include flexbox();
+		@media (max-width: $md4 + px) {
+			flex-wrap: wrap;
+			margin-top: 20px;
+		}
+		padding: 0px 20px 0px 20px;
+		margin-top: 10px;
+		font-size: 25px;
+	}
+
+	&__date {
+		margin-left: 40px;
+		@media (max-width: $md4 + px) {
+			margin: 10px 0px;
+			text-align: center;
+			input {
+				margin-top: 10px;
+			}
+		}
+		input {
+			font-size: 20px;
+		}
+	}
+}
+
+.form-inputblock {
+	@include flexbox();
+	flex-wrap: wrap;
+	justify-content: space-between;
+	&__title {
+		display: block;
+		padding: 0px 20px 0px 20px;
+		margin: 10px 0px;
+		font-size: 25px;
+	}
+
+	&__select-btn {
+		padding-right: 20px;
+		align-self: flex-end;
+		.btn-main {
+			display: block;
+			color: $white;
+			padding: 10px 40px;
+			font-size: 18px;
+			border-bottom-left-radius: 0px;
+			border-bottom-right-radius: 0px;
+		}
+	}
+
+	&__input {
+		@extend .form-row__input;
+		flex-basis: 100%;
+		width: 100%;
+		padding: 0px 20px 0px 20px;
+		margin-bottom: 10px;
+	}
+}
+
+.comment-block {
+	flex-direction: column;
+	&__title {
+		@extend .form-inputblock__title;
+	}
+
+	&__comment {
+		padding: 0px 20px 0px 20px;
+
+		textarea {
+			resize: none;
+			width: 100%;
+			height: 100px;
+			box-sizing: border-box;
+			overflow: auto;
+		}
+	}
+}
+
+.form-selectblock {
+	&__select {
+		position: relative;
+		padding: 0px 20px;
+		margin: 10px 0px;
+		&:before {
+			content: "";
+			display: block;
+			width: 1px;
+			height: 30px;
+
+			background-color: $graphite;
+			pointer-events: none;
+
+			position: absolute;
+			top: 1px;
+			right: 48px;
+			z-index: 1;
+		}
+
+		&:after {
+			content: "";
+			border-style: solid;
+			border-width: 5px 5px 0 5px;
+			border-color: #333 transparent transparent transparent;
+			pointer-events: none;
+
+			position: absolute;
+			top: 50%;
+			right: 30px;
+			z-index: 1;
+			margin-top: -2px;
+		}
+
+		select {
+			width: 100%;
+			height: 100%;
+			padding: 7px 7px;
+			background-color: #fff;
+			border-radius: 3px;
+			border: 1px solid $graphite;
+			appearance: none;
+			font-size: 14px;
+			color: #000;
+		}
+
+		/* Убираем стандартные стрелочки в IE */
+		select::-ms-expand {
+			display: none;
+		}
+
+		select:focus {
+			outline: 0;
+			border-color: $brand-c1;
+		}
+
+		select:hover {
+			cursor: pointer;
+			border-color: $brand-c1;
+		}
+	}
+	&__title {
+		@extend .form-inputblock__title;
+	}
+}
+
+.check {
+	margin: 0 3px 0 0;
+	width: 10px;
+	height: 10px;
+	// не работает
+	@media (max-width: $md4 + px) {
+		label {
+			margin-top: 10px;
+		}
+	}
+}
+.check + label {
+	cursor: pointer;
+}
+.check:not(checked) {
+	position: absolute;
+	opacity: 0;
+	/*   visibility: hidden; */
+}
+.check:not(checked) + label {
+	position: relative;
+	padding: 0 0 0 60px;
+}
+.check:not(checked) + label:before {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 5px;
+	width: 40px;
+	height: 20px;
+	border-radius: 10px;
+	background: #cdd1da;
+	box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+.check:not(checked) + label:after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 7px;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	transition: all 0.2s;
+}
+.check:checked + label:before {
+	background: $brand-c1;
+}
+.check:checked + label:after {
+	left: 25px;
+}

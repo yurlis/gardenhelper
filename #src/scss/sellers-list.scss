@@ -1,0 +1,19 @@
+.sellers-item {
+	@extend .plants-item;
+
+	&__picture {
+		@extend .plants-item__picture;
+	}
+
+	&__name {
+		@extend .plants-item__name;
+	}
+
+	&__address {
+		@extend .plants-item__type;
+	}
+
+	&__btn {
+		@extend .plants-item__btn;
+	}
+}

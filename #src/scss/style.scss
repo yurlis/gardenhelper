@@ -1,0 +1,110 @@
+// @import "common/global";
+
+@import "mixins.scss";
+@import "vars.scss";
+
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,700&display=swap&subset=cyrillic-ext");
+@import "fonts.scss";
+
+$fontfamily: "PT Sans";
+
+$minwidth: 320px;
+$mw: 970;
+$md1: $mw + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+
+// === обнуление
+@import "null.scss";
+body {
+	color: #000;
+	font-size: 14px;
+	&.lock {
+		overflow: hidden;
+		@media (max-width: $md3+px) {
+			width: 100%;
+			position: fixed;
+			overflow: hidden;
+		}
+	}
+}
+// === / обнуление
+
+// === оболочка
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	@include flexbox();
+	flex-direction: column;
+	position: relative;
+	&.loaded {
+	}
+}
+// === / оболочка
+
+// === основной контейнер
+._container {
+	max-width: $mw + px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+.content {
+	background-color: #fff;
+	position: relative;
+	z-index: 50;
+}
+
+// основное описание кнопок
+@mixin pattern-button {
+	font-size: 16px;
+	margin: 0;
+	padding: 17px 20px;
+	outline: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+@mixin pattern-button-gradient {
+	background: linear-gradient(to right, $brand-c1-l, $brand-c1);
+	&:hover {
+		background: linear-gradient(to right, $brand-c1, $brand-c1-l);
+	}
+}
+// кнопка главная на первом экране
+.btn-main {
+	@include pattern-button;
+	@include pattern-button-gradient;
+	border: none;
+	color: $graphite;
+}
+.btn-second {
+	@include pattern-button;
+
+	border: none;
+	background-color: $brand-c2;
+	color: $graphite;
+
+	&:hover {
+		background-color: $brand-c3;
+	}
+}
+
+// === / основной контейнер
+
+@import "ui";
+@import "forms";
+@import "common";
+@import "header";
+@import "mainblock";
+@import "login-form";
+@import "registration-form";
+@import "verification-form";
+@import "info-block";
+@import "about";
+@import "plant-registration";
+@import "plants-list.scss";
+@import "sellers-list.scss";

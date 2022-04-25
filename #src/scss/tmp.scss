@@ -1,0 +1,134 @@
+.mainblock {
+	flex: 1 1 auto;
+	position: relative;
+	@include flexbox();
+	justify-content: center;
+	//align-items: center;
+	text-align: center;
+	padding: 50px 0;
+	@media screen and (max-width: $md3+px), screen and (max-height: 600px) {
+		padding: 20px 0;
+	}
+	// .mainblock__content
+	&__content {
+		position: relative;
+		z-index: 1;
+		flex: 1 1 auto;
+		.container {
+			height: 100%;
+			@include flexbox();
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+	// .mainblock__logo
+	&__logo {
+	}
+	// .mainblock__text
+	&__text {
+		color: #ffffff;
+		position: relative;
+		padding: 0px 0px 45px 0px;
+		margin: 30px 0;
+		&:after {
+			content: "";
+			width: 105px;
+			height: 2px;
+			background-color: #fff;
+			position: absolute;
+			left: 50%;
+			margin: 0px 0px 0px -52.5px;
+			bottom: 0;
+		}
+	}
+	// .mainblock__title
+	&__title {
+		font-weight: 900;
+		font-size: 34px;
+		line-height: 40px;
+		text-transform: uppercase;
+		letter-spacing: 5.43px;
+		margin: 0px 0px 10px 0px;
+		@media screen and (max-width: $md3+px), screen and (max-height: 600px) {
+			font-size: 25px;
+			line-height: 30px;
+		}
+	}
+	// .mainblock__subtitle
+	&__subtitle {
+		font-size: 26px;
+		font-weight: 400;
+		letter-spacing: 4.15px;
+	}
+	// .mainblock__footer
+	&__footer {
+		@include flexboxinline();
+		flex-direction: column;
+	}
+	// .mainblock__btn
+	&__btn {
+		margin: 0px 0px 60px 0px;
+		@media screen and (max-width: $md3+px), screen and (max-height: 600px) {
+			margin: 0px 0px 30px 0px;
+		}
+	}
+	// .mainblock__arrow
+	&__arrow {
+		position: relative;
+		animation: arrow 2s infinite ease;
+	}
+	// .mainblock__image
+	&__image {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+}
+
+@keyframes arrow {
+	0% {
+		top: 0;
+	}
+	50% {
+		top: 10px;
+	}
+	100% {
+		top: 0;
+	}
+}
+@-webkit-keyframes arrow {
+	0% {
+		top: 0;
+	}
+	50% {
+		top: 10px;
+	}
+	100% {
+		top: 0;
+	}
+}
+@-moz-keyframes arrow {
+	0% {
+		top: 0;
+	}
+	50% {
+		top: 10px;
+	}
+	100% {
+		top: 0;
+	}
+}
+@-o-keyframes arrow {
+	0% {
+		top: 0;
+	}
+	50% {
+		top: 10px;
+	}
+	100% {
+		top: 0;
+	}
+}

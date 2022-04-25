@@ -1,0 +1,120 @@
+.login {
+	&__container {
+		margin-top: 150px;
+		display: flex;
+		justify-content: center;
+	}
+
+	&__login-form {
+		background-color: $white;
+		width: 350px;
+	}
+}
+
+.login-form {
+	@include flexbox();
+	flex-direction: column;
+
+	&__form-title {
+		font-size: 30px;
+		color: $brand-c3;
+		margin: 30px 10% 0px;
+	}
+	&__form-row {
+		margin: 20px 10% 0px;
+	}
+
+	&__login-button {
+		margin: 22px 10% 0px;
+		width: 80%;
+		.btn-main {
+			width: 100%;
+			color: $white;
+			padding: 13px 20px;
+			font-size: 18px;
+		}
+	}
+
+	&__remind-link {
+		margin: 20px 25px 0px;
+		text-align: center;
+	}
+
+	&__registration {
+		margin: 30px 0px 0px 0px;
+
+		.btn-second {
+			border-radius: 0px;
+			font-size: 18px;
+			display: block;
+			text-align: center;
+			a {
+			}
+		}
+	}
+
+	&__info-block {
+		display: none;
+	}
+
+	.link {
+		font-size: 20px;
+		color: $brand-c3;
+		cursor: pointer;
+		@media (min-width: $md2+px) {
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+.form-row {
+	display: flex;
+	&__title {
+		text-align: left;
+		color: $graphite;
+		background-color: $brand-c1-l;
+		height: 48px;
+		padding-left: 10px;
+		line-height: 48px;
+		font-size: 20px;
+		border-style: solid;
+		border-width: 1px 0px 1px 1px;
+		border-color: $graphite;
+		width: 40%;
+	}
+
+	&__input {
+		width: 60%;
+		margin: 0;
+
+		input {
+			border: solid 1px;
+			border-color: $graphite;
+			color: #000000;
+			font-weight: bold;
+			height: 48px;
+			padding: 0 10px 0 10px;
+			outline: none;
+			width: 100%;
+			font-size: 18px;
+
+			&::placeholder {
+				font-size: 15px;
+				font-weight: normal;
+				color: gray;
+			}
+
+			&:focus {
+				background: rgba(255, 255, 255, 1);
+				&::placeholder {
+					color: black;
+				}
+			}
+			&:hover {
+				border-color: $brand-c1;
+			}
+		}
+	}
+}

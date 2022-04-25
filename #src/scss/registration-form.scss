@@ -1,0 +1,44 @@
+.registration {
+	&__container {
+		@extend .login__container;
+	}
+
+	&__registration-form {
+		@extend .login__login-form;
+		width: 500px;
+	}
+}
+
+.registration-form {
+	@extend .login-form;
+	&__form-title {
+		@extend .login-form__form-title;
+	}
+
+	&__form-row {
+		@extend .login-form__form-row;
+	}
+
+	&__registration-button {
+		@extend .login-form__login-button;
+	}
+
+	&__login {
+		@extend .login-form__registration;
+	}
+
+	&__info-block {
+		@extend .login-form__info-block;
+	}
+}
+.form-row {
+	&__title {
+	}
+
+	&__input {
+	}
+}
+.btn-main {
+}
+.btn-second {
+}

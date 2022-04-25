@@ -1,0 +1,50 @@
+.plants-item {
+	@include flexbox();
+	flex-direction: column;
+	justify-content: space-between;
+	border: 1px solid $graphite;
+	width: calc(33.3% - 10px);
+	@media (max-width: $md3 + px) {
+		width: calc(50% - 10px);
+	}
+	@media (max-width: $md4 + px) {
+		width: 100%;
+	}
+	background-color: #fff;
+	padding: 15px;
+	margin: 10px 5px;
+	@media (max-width: $md4 + px) {
+		margin: 5px 0px;
+	}
+
+	&__picture {
+		width: 100%;
+		margin-bottom: 10px;
+		img {
+			width: 80%;
+			height: auto;
+			padding: 0;
+			object-fit: cover;
+		}
+	}
+
+	&__name {
+		font-size: 20px;
+		margin-bottom: 10px;
+		font-weight: 700;
+	}
+
+	&__type {
+		font-size: 15px;
+		margin-bottom: 10px;
+	}
+
+	&__btn {
+		// flex-shrink: 0;
+		// flex-grow: 0;
+		a {
+			width: 100%;
+			display: inline-block;
+		}
+	}
+}
